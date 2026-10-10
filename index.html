@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vyora — The Operating System for Nigerian Tailors</title>
+<meta name="description" content="Vyora is the operating system for tailors and fashion designers in Nigeria. AI measurement, design approval, order tracking, and a public website for every tailor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wine:#5C1A2B;
+  --wine-dark:#3E0F1C;
+  --wine-light:#8B3A4D;
+  --gold:#C9A961;
+  --gold-light:#E5C687;
+  --gold-dark:#8B7340;
+  --cream:#FAF6EF;
+  --cream-alt:#F2EBDD;
+  --white:#FFFFFF;
+  --ink:#1A1A1A;
+  --ink-soft:#5A544E;
+  --ink-mute:#8A817C;
+  --line:#E8DFCC;
+  --line-strong:#D4C5A8;
+  --success:#2D5016;
+  --shadow-sm:0 1px 2px rgba(62,15,28,.04), 0 1px 3px rgba(62,15,28,.06);
+  --shadow-md:0 4px 12px rgba(62,15,28,.06), 0 2px 4px rgba(62,15,28,.04);
+  --shadow-lg:0 20px 50px -12px rgba(62,15,28,.18), 0 8px 20px -8px rgba(62,15,28,.10);
+  --radius:16px;
+  --radius-sm:10px;
+  --radius-lg:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-0.02em;}
+a{color:var(--wine);text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(250,246,239,.85);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:all .3s ease;
+}
+.nav.scrolled{border-bottom-color:var(--line);box-shadow:var(--shadow-sm);}
+.nav-inner{
+  max-width:1180px;margin:0 auto;padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;color:var(--wine);letter-spacing:-0.02em;}
+.logo-mark{
+  width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--wine) 0%,var(--wine-light) 100%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 10px rgba(92,26,43,.25);
+}
+.logo-mark svg{width:18px;height:18px;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14px;color:var(--ink-soft);font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--wine);}
+.nav-cta{
+  background:var(--wine);color:var(--white);padding:10px 20px;border-radius:10px;
+  font-size:14px;font-weight:600;transition:all .2s;
+  box-shadow:0 4px 12px rgba(92,26,43,.20);
+}
+.nav-cta:hover{background:var(--wine-dark);color:var(--white);transform:translateY(-1px);box-shadow:0 6px 16px rgba(92,26,43,.28);}
+@media(max-width:820px){.nav-links{display:none;}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:100px 24px;position:relative;}
+.container{max-width:1180px;margin:0 auto;}
+.eyebrow{
+  display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold-dark);
+  padding:6px 14px;border-radius:100px;background:rgba(201,169,97,.12);
+  border:1px solid rgba(201,169,97,.25);margin-bottom:20px;
+}
+.section-title{font-size:clamp(32px,4.5vw,48px);color:var(--wine);margin-bottom:16px;}
+.section-sub{font-size:18px;color:var(--ink-soft);max-width:720px;margin-bottom:56px;}
+
+/* ---------- HERO ---------- */
+.hero{
+  padding:160px 24px 100px;
+  background:
+    radial-gradient(ellipse at top right, rgba(201,169,97,.14), transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(92,26,43,.08), transparent 55%),
+    var(--cream);
+  position:relative;overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;max-width:1180px;margin:0 auto;}
+.hero h1{font-size:clamp(40px,6vw,68px);color:var(--wine);margin-bottom:24px;line-height:1.05;}
+.hero h1 em{font-style:italic;color:var(--gold-dark);font-weight:500;}
+.hero p.lead{font-size:19px;color:var(--ink-soft);margin-bottom:36px;max-width:560px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 26px;border-radius:12px;font-weight:600;font-size:15px;
+  transition:all .22s ease;cursor:pointer;border:none;font-family:inherit;
+}
+.btn-primary{background:var(--wine);color:var(--white);box-shadow:0 8px 20px rgba(92,26,43,.22);}
+.btn-primary:hover{background:var(--wine-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(92,26,43,.30);}
+.btn-ghost{background:transparent;color:var(--wine);border:1.5px solid var(--line-strong);}
+.btn-ghost:hover{border-color:var(--wine);background:rgba(92,26,43,.04);}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line);}
+.hero-meta-item .num{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--wine);}
+.hero-meta-item .lbl{font-size:13px;color:var(--ink-mute);}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px;}.hero{padding:130px 24px 70px;}}
+
+/* Phone mockup */
+.phone-stage{position:relative;display:flex;justify-content:center;perspective:1200px;}
+.phone{
+  width:280px;height:570px;border-radius:36px;background:var(--wine-dark);
+  padding:10px;box-shadow:var(--shadow-lg);position:relative;
+  transform:rotateY(-8deg) rotateX(2deg);
+  transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.phone:hover{transform:rotateY(0deg) rotateX(0deg);}
+.phone::before{
+  content:'';position:absolute;top:16px;left:50%;transform:translateX(-50%);
+  width:80px;height:6px;border-radius:100px;background:rgba(0,0,0,.4);z-index:2;
+}
+.phone-screen{
+  width:100%;height:100%;border-radius:28px;overflow:hidden;
+  background:var(--cream);display:flex;flex-direction:column;
+}
+.phone-status{padding:8px 20px 4px;font-size:10px;color:var(--ink-mute);display:flex;justify-content:space-between;font-weight:600;}
+.phone-header{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;}
+.phone-header .brand{font-family:'Fraunces',serif;font-weight:700;font-size:13px;color:var(--wine);}
+.phone-header .avatar{width:24px;height:24px;border-radius:50%;background:var(--gold);}
+.phone-body{flex:1;padding:0 14px 14px;overflow:hidden;}
+.phone-card{
+  background:var(--white);border-radius:14px;padding:12px;margin-bottom:10px;
+  box-shadow:0 2px 8px rgba(62,15,28,.05);border:1px solid var(--line);
+}
+.phone-card .label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-mute);font-weight:600;margin-bottom:4px;}
+.phone-card .value{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--wine);}
+.phone-card .value.gold{color:var(--gold-dark);}
+.phone-scan{
+  background:linear-gradient(135deg,var(--wine),var(--wine-light));
+  border-radius:14px;padding:16px;color:var(--white);margin-bottom:10px;
+  text-align:center;
+}
+.phone-scan .icon{margin-bottom:6px;font-size:20px;}
+.phone-scan .txt{font-size:11px;font-weight:600;}
+.phone-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.phone-mini{background:var(--white);border-radius:10px;padding:10px;border:1px solid var(--line);}
+.phone-mini .k{font-size:9px;color:var(--ink-mute);font-weight:600;}
+.phone-mini .v{font-size:14px;font-family:'Fraunces',serif;font-weight:700;color:var(--wine);margin-top:2px;}
+
+/* ---------- PROBLEM ---------- */
+.problem{background:var(--wine);color:var(--cream);}
+.problem .section-title{color:var(--white);}
+.problem .section-sub{color:rgba(250,246,239,.75);}
+.problem .eyebrow{color:var(--gold-light);background:rgba(201,169,97,.15);border-color:rgba(201,169,97,.3);}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.pain-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(201,169,97,.2);
+  border-radius:var(--radius);padding:28px;transition:all .3s ease;
+}
+.pain-card:hover{background:rgba(255,255,255,.07);border-color:rgba(201,169,97,.4);transform:translateY(-4px);}
+.pain-card .pain-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(201,169,97,.15);border:1px solid rgba(201,169,97,.3);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  color:var(--gold-light);font-size:20px;
+}
+.pain-card h3{color:var(--white);font-size:19px;margin-bottom:10px;}
+.pain-card p{color:rgba(250,246,239,.7);font-size:14.5px;line-height:1.65;}
+.pain-card .cost{margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,169,97,.15);font-size:13px;color:var(--gold-light);font-weight:600;}
+
+/* ---------- SOLUTION ---------- */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+.feature{
+  background:var(--white);border-radius:var(--radius);padding:32px;
+  border:1px solid var(--line);box-shadow:var(--shadow-sm);
+  transition:all .3s ease;position:relative;
+}
+.feature:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--line-strong);}
+.feature-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(92,26,43,.08),rgba(201,169,97,.12));
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  color:var(--wine);font-size:22px;border:1px solid var(--line);
+}
+.feature h3{font-size:20px;color:var(--wine);margin-bottom:10px;}
+.feature p{color:var(--ink-soft);font-size:15px;}
+.feature .tag{
+  position:absolute;top:20px;right:20px;
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;background:var(--gold);color:var(--wine-dark);
+}
+
+/* ---------- PHASES ---------- */
+.phases{background:var(--cream-alt);}
+.phase-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;}
+.phase-tab{
+  padding:12px 24px;border-radius:12px;border:1.5px solid var(--line-strong);
+  background:transparent;font-family:inherit;font-size:14px;font-weight:600;
+  color:var(--ink-soft);cursor:pointer;transition:all .22s;
+}
+.phase-tab.active{background:var(--wine);color:var(--white);border-color:var(--wine);box-shadow:0 6px 14px rgba(92,26,43,.20);}
+.phase-tab:hover:not(.active){border-color:var(--wine);color:var(--wine);}
+.phase-panel{display:none;animation:fadeUp .5s ease;}
+.phase-panel.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.phase-header{margin-bottom:32px;}
+.phase-header h3{font-size:26px;color:var(--wine);margin-bottom:8px;}
+.phase-header .timeline{font-size:13px;font-weight:600;color:var(--gold-dark);letter-spacing:.06em;text-transform:uppercase;}
+.phase-header p{color:var(--ink-soft);margin-top:10px;max-width:680px;}
+.phase-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.phase-item{
+  background:var(--white);padding:18px 20px;border-radius:var(--radius-sm);
+  border:1px solid var(--line);display:flex;gap:12px;align-items:flex-start;
+  box-shadow:var(--shadow-sm);
+}
+.phase-item .check{
+  width:22px;height:22px;border-radius:50%;background:rgba(201,169,97,.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  color:var(--gold-dark);font-size:12px;font-weight:700;margin-top:1px;
+}
+.phase-item .txt{font-size:14px;color:var(--ink);font-weight:500;}
+
+/* ---------- PRICING ---------- */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;align-items:stretch;}
+.plan{
+  background:var(--white);border-radius:var(--radius-lg);padding:36px 28px;
+  border:1.5px solid var(--line);box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;position:relative;transition:all .3s;
+}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.plan.featured{border-color:var(--wine);border-width:2px;background:linear-gradient(180deg,#fff 0%,#FDF9F0 100%);}
+.plan.featured::before{
+  content:'MOST POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--wine);color:var(--white);font-size:10px;font-weight:700;
+  letter-spacing:.12em;padding:5px 14px;border-radius:100px;
+}
+.plan-name{font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+.plan-price{font-family:'Fraunces',serif;font-size:44px;font-weight:700;color:var(--wine);line-height:1;}
+.plan-price span{font-size:15px;color:var(--ink-mute);font-family:'Inter',sans-serif;font-weight:500;}
+.plan-desc{font-size:14px;color:var(--ink-soft);margin:12px 0 24px;min-height:44px;}
+.plan-features{list-style:none;flex:1;margin-bottom:26px;}
+.plan-features li{
+  padding:9px 0;font-size:14px;color:var(--ink);display:flex;gap:10px;align-items:flex-start;
+  border-bottom:1px solid var(--line);
+}
+.plan-features li:last-child{border-bottom:none;}
+.plan-features li svg{flex-shrink:0;margin-top:4px;color:var(--gold-dark);}
+.plan .btn{width:100%;justify-content:center;}
+
+/* Trial callout */
+.trial-callout{
+  margin-top:40px;background:linear-gradient(135deg,var(--wine),var(--wine-light));
+  border-radius:var(--radius);padding:32px 36px;color:var(--white);
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+  box-shadow:var(--shadow-lg);
+}
+.trial-callout h3{color:var(--white);font-size:22px;margin-bottom:6px;}
+.trial-callout p{color:rgba(250,246,239,.85);font-size:15px;max-width:640px;}
+.trial-callout .badge{
+  background:var(--gold);color:var(--wine-dark);padding:14px 24px;border-radius:14px;
+  font-family:'Fraunces',serif;font-weight:700;font-size:22px;white-space:nowrap;
+}
+
+/* ---------- MONETIZATION ---------- */
+.monetize{background:var(--wine);color:var(--cream);}
+.monetize .section-title{color:var(--white);}
+.monetize .section-sub{color:rgba(250,246,239,.75);}
+.monetize .eyebrow{color:var(--gold-light);background:rgba(201,169,97,.15);border-color:rgba(201,169,97,.3);}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+.rev-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(201,169,97,.18);
+  border-radius:var(--radius);padding:24px;transition:all .3s;
+}
+.rev-card:hover{background:rgba(255,255,255,.07);border-color:rgba(201,169,97,.4);}
+.rev-card .num{font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:var(--gold-light);letter-spacing:.08em;}
+.rev-card h4{color:var(--white);font-size:17px;margin:10px 0 8px;}
+.rev-card p{color:rgba(250,246,239,.7);font-size:13.5px;line-height:1.6;}
+.rev-card .potential{margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,169,97,.15);font-size:12.5px;color:var(--gold-light);font-weight:600;}
+
+/* ---------- ROADMAP ---------- */
+.roadmap{background:var(--cream-alt);}
+.timeline{position:relative;padding-left:32px;}
+.timeline::before{
+  content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,var(--gold),var(--wine));
+}
+.tl-item{position:relative;padding-bottom:44px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  position:absolute;left:-32px;top:4px;width:20px;height:20px;border-radius:50%;
+  background:var(--cream-alt);border:3px solid var(--wine);
+}
+.tl-item.done .tl-dot{background:var(--wine);}
+.tl-item.active .tl-dot{background:var(--gold);border-color:var(--gold-dark);box-shadow:0 0 0 4px rgba(201,169,97,.2);}
+.tl-phase{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+.tl-item h3{font-size:22px;color:var(--wine);margin-bottom:8px;}
+.tl-item p{color:var(--ink-soft);font-size:15px;max-width:680px;}
+.tl-item .metrics{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;}
+.tl-item .metric{font-size:13px;color:var(--ink);}
+.tl-item .metric b{color:var(--wine);font-family:'Fraunces',serif;font-size:18px;display:block;}
+
+/* ---------- MARKET ---------- */
+.market-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.stat{
+  background:var(--white);border-radius:var(--radius);padding:30px 24px;
+  border:1px solid var(--line);box-shadow:var(--shadow-sm);text-align:center;
+  transition:all .3s;
+}
+.stat:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.stat .num{font-family:'Fraunces',serif;font-size:40px;font-weight:700;color:var(--wine);line-height:1;}
+.stat .num.gold{color:var(--gold-dark);}
+.stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:10px;font-weight:500;}
+.stat .sub{font-size:11.5px;color:var(--ink-mute);margin-top:6px;}
+
+/* ---------- PARTNER ENGINE ---------- */
+.partners{background:var(--wine);color:var(--cream);}
+.partners .section-title{color:var(--white);}
+.partners .section-sub{color:rgba(250,246,239,.75);}
+.partners .eyebrow{color:var(--gold-light);background:rgba(201,169,97,.15);border-color:rgba(201,169,97,.3);}
+.partner-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.partner-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(201,169,97,.18);
+  border-radius:var(--radius);padding:26px;transition:all .3s;
+}
+.partner-card:hover{background:rgba(255,255,255,.07);transform:translateY(-3px);}
+.partner-card .badge{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  padding:4px 10px;border-radius:100px;background:var(--gold);color:var(--wine-dark);
+  margin-bottom:14px;
+}
+.partner-card h4{color:var(--white);font-size:17px;margin-bottom:8px;}
+.partner-card p{color:rgba(250,246,239,.7);font-size:13.5px;line-height:1.6;}
+.partner-card .commission{margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,169,97,.15);font-size:13px;color:var(--gold-light);font-weight:600;}
+
+/* ---------- CTA ---------- */
+.cta{padding:120px 24px;text-align:center;}
+.cta h2{font-size:clamp(34px,5vw,56px);color:var(--wine);max-width:820px;margin:0 auto 20px;}
+.cta p{font-size:18px;color:var(--ink-soft);max-width:620px;margin:0 auto 40px;}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 30px;}
+.footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;}
+.footer-inner h4{color:var(--gold-light);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;}
+.footer-inner a{color:rgba(250,246,239,.7);font-size:14px;display:block;padding:4px 0;transition:color .2s;}
+.footer-inner a:hover{color:var(--gold-light);}
+.footer-bottom{max-width:1180px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(201,169,97,.15);text-align:center;font-size:13px;}
+
+/* ---------- ANIMATION ---------- */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+
+/* ---------- QUOTE ---------- */
+.quote-block{
+  max-width:820px;margin:0 auto;text-align:center;padding:60px 24px;
+}
+.quote-block .q{
+  font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);font-weight:500;
+  color:var(--wine);font-style:italic;line-height:1.4;margin-bottom:20px;
+}
+.quote-block .a{font-size:14px;font-weight:600;color:var(--gold-dark);letter-spacing:.08em;text-transform:uppercase;}
+
+/* ---------- APP PREVIEW ---------- */
+.app-preview{background:var(--cream-alt);}
+.screens{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;
+  max-width:1000px;margin:0 auto;
+}
+.screen{
+  background:var(--white);border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--line);box-shadow:var(--shadow-md);transition:all .3s;
+}
+.screen:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.screen-bar{
+  background:var(--wine);padding:10px 14px;display:flex;gap:6px;align-items:center;
+}
+.screen-bar .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);}
+.screen-bar .title{margin-left:10px;font-size:11px;color:rgba(255,255,255,.8);font-weight:600;letter-spacing:.06em;}
+.screen-body{padding:20px;min-height:240px;}
+.screen-body .s-head{font-family:'Fraunces',serif;font-size:17px;color:var(--wine);font-weight:700;margin-bottom:14px;}
+.screen-body .s-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 12px;background:var(--cream);border-radius:8px;margin-bottom:8px;
+  font-size:13px;color:var(--ink);
+}
+.screen-body .s-row .v{font-weight:700;color:var(--wine);font-family:'Fraunces',serif;}
+.screen-body .s-pill{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;
+  padding:3px 8px;border-radius:100px;background:rgba(201,169,97,.2);color:var(--gold-dark);
+  text-transform:uppercase;
+}
+.screen-caption{
+  padding:16px 20px;border-top:1px solid var(--line);background:var(--cream);
+  font-size:13px;color:var(--ink-soft);font-weight:500;text-align:center;
+}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:640px){
+  section{padding:70px 20px;}
+  .hero-meta{gap:20px;}
+  .trial-callout{padding:24px;text-align:center;justify-content:center;}
+  .cta{padding:80px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 L20 7 L20 17 L12 22 L4 17 L4 7 Z"/>
+          <path d="M12 8 L12 16"/>
+          <path d="M8 12 L16 12"/>
+        </svg>
+      </span>
+      Vyora
+    </a>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#phases">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#market">Market</a>
+      <a href="#contact" class="nav-cta">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow">For Nigerian Tailors &amp; Fashion Designers</span>
+      <h1>The operating system for <em>tailors</em>.</h1>
+      <p class="lead">Vyora measures your clients with AI, locks in their design approval with a timestamp, tracks every order and payment, and gives you a professional website. All in one place. All from your phone.</p>
+      <div class="hero-actions">
+        <a href="#solution" class="btn btn-primary">See the product &rarr;</a>
+        <a href="#roadmap" class="btn btn-ghost">View the roadmap</a>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="num">10s</div>
+          <div class="lbl">To measure a client</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="num">80+</div>
+          <div class="lbl">Measurements per scan</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="num">99%</div>
+          <div class="lbl">Gross margin at scale</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-stage">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-status"><span>9:41</span><span>Vyora</span></div>
+          <div class="phone-header">
+            <span class="brand">Chidi Stitches</span>
+            <span class="avatar"></span>
+          </div>
+          <div class="phone-body">
+            <div class="phone-scan">
+              <div class="icon">&#128247;</div>
+              <div class="txt">Tap to scan a client</div>
+            </div>
+            <div class="phone-card">
+              <div class="label">Today's Revenue</div>
+              <div class="value">&#8358;185,000</div>
+            </div>
+            <div class="phone-mini-grid">
+              <div class="phone-mini">
+                <div class="k">Active Orders</div>
+                <div class="v">12</div>
+              </div>
+              <div class="phone-mini">
+                <div class="k">Owed to You</div>
+                <div class="v gold">&#8358;47K</div>
+              </div>
+              <div class="phone-mini">
+                <div class="k">Expiring Fabric</div>
+                <div class="v">3</div>
+              </div>
+              <div class="phone-mini">
+                <div class="k">Clients</div>
+                <div class="v">124</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <span class="eyebrow">The Problem</span>
+    <h2 class="section-title">Millions of Nigerian tailors run on notebooks and memory.</h2>
+    <p class="section-sub">And they lose money every single month. Not because they lack skill &mdash; because they have no system.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-icon">&#128207;</div>
+        <h3>Wrong Measurements</h3>
+        <p>Tape measuring takes 20–30 minutes, and errors still happen. When they do, the fabric is cut, the work is done, and the outfit doesn't fit.</p>
+        <div class="cost">Cost: &#8358;15,000–&#8358;60,000 per remake</div>
+      </div>
+      <div class="pain-card reveal reveal-delay-1">
+        <div class="pain-icon">&#128172;</div>
+        <h3>Client Disputes</h3>
+        <p>"This isn't what I asked for." There's no proof of what was agreed. The tailor either remakes it for free or gives a discount.</p>
+        <div class="cost">Cost: Free remake + damaged reputation</div>
+      </div>
+      <div class="pain-card reveal reveal-delay-2">
+        <div class="pain-icon">&#128176;</div>
+        <h3>Unpaid Debts</h3>
+        <p>Clients owe money. The tailor writes it in a notebook and forgets. Weeks later, the money is gone and it's too awkward to ask.</p>
+        <div class="cost">Cost: &#8358;50,000–&#8358;500,000/month lost</div>
+      </div>
+      <div class="pain-card reveal reveal-delay-3">
+        <div class="pain-icon">&#128241;</div>
+        <h3>"Is It Ready?"</h3>
+        <p>Twenty WhatsApp messages a day from anxious clients. Each one pulls the tailor off the sewing machine. Hours lost, every week.</p>
+        <div class="cost">Cost: 10–15 hours lost per week</div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">&#128202;</div>
+        <h3>No Profit Visibility</h3>
+        <p>The tailor counts cash at night. But between restocking, expenses, and family withdrawals &mdash; is the business actually profitable?</p>
+        <div class="cost">Cost: Business runs blind</div>
+      </div>
+      <div class="pain-card reveal reveal-delay-1">
+        <div class="pain-icon">&#127760;</div>
+        <h3>No Online Presence</h3>
+        <p>Instagram profile isn't a website. The tailor can't be found on Google. Higher-paying clients go to competitors who look more professional.</p>
+        <div class="cost">Cost: Lost premium clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section style="background:var(--cream);">
+  <div class="quote-block reveal">
+    <p class="q">"Your notebook is free. But how much is it costing you every month?"</p>
+    <p class="a">— The conversation that sells Vyora</p>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <span class="eyebrow">The Solution</span>
+    <h2 class="section-title">Vyora gives every tailor a complete digital business.</h2>
+    <p class="section-sub">Not another tracker. A system that prevents the losses, manages the work, and markets the business.</p>
+    <div class="features-grid">
+      <div class="feature reveal">
+        <span class="tag">Killer Feature</span>
+        <div class="feature-icon">&#129302;</div>
+        <h3>AI Body Measurement</h3>
+        <p>Take 2 photos of a client. Vyora generates 80+ precise measurements in 10 seconds. No tape. No errors. No more remakes because of a wrong measurement.</p>
+      </div>
+      <div class="feature reveal reveal-delay-1">
+        <span class="tag">Killer Feature</span>
+        <div class="feature-icon">&#9989;</div>
+        <h3>Design Approval System</h3>
+        <p>Before cutting fabric, the client approves the design on your phone. Silhouette, neckline, sleeves, fabric, reference photos. Timestamped. Locked. If they dispute later, you show them the proof.</p>
+      </div>
+      <div class="feature reveal reveal-delay-2">
+        <div class="feature-icon">&#128203;</div>
+        <h3>Order &amp; Client Management</h3>
+        <p>Every client, every order, every stage &mdash; from cutting to sewing to fitting to delivery. Searchable forever. Nothing gets lost.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">&#128181;</div>
+        <h3>Invoices &amp; Payment Tracking</h3>
+        <p>Generate professional invoices. Record every payment. See exactly who owes what. Every morning, Vyora emails you a list of debts to chase.</p>
+      </div>
+      <div class="feature reveal reveal-delay-1">
+        <div class="feature-icon">&#127760;</div>
+        <h3>Your Own Website</h3>
+        <p>Every tailor gets a public page at vyora.ng/your-name. Portfolio, pricing, contact &mdash; a real website you can share on Instagram or WhatsApp. No coding, no cost.</p>
+      </div>
+      <div class="feature reveal reveal-delay-2">
+        <div class="feature-icon">&#129531;</div>
+        <h3>Fabric Inventory</h3>
+        <p>Track fabric by type, colour, and quantity. Alerts when stock is low. Dead stock reports. Stop tying up money in fabric you're not using.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">&#128101;</div>
+        <h3>Staff &amp; Shift Management</h3>
+        <p>Add staff, assign roles, set PINs. Track every sale and every shift. Know exactly who did what, and catch discrepancies before they grow.</p>
+      </div>
+      <div class="feature reveal reveal-delay-1">
+        <div class="feature-icon">&#128200;</div>
+        <h3>Profit Dashboard</h3>
+        <p>Today's revenue, this month's profit, top clients, best sellers. Real-time numbers, not guesswork.</p>
+      </div>
+      <div class="feature reveal reveal-delay-2">
+        <div class="feature-icon">&#128241;</div>
+        <h3>Works Like an App</h3>
+        <p>Installable on any phone. Works on iPhone, Android, Windows, and Mac. No downloads from app stores. Just your browser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<section class="app-preview">
+  <div class="container">
+    <span class="eyebrow">Inside the App</span>
+    <h2 class="section-title">Built for the way tailors actually work.</h2>
+    <p class="section-sub">Simple enough for a solo tailor. Powerful enough for a fashion house.</p>
+    <div class="screens">
+      <div class="screen reveal">
+        <div class="screen-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title">Dashboard</span>
+        </div>
+        <div class="screen-body">
+          <div class="s-head">Chidi Stitches</div>
+          <div class="s-row"><span>Today's Revenue</span><span class="v">&#8358;185,000</span></div>
+          <div class="s-row"><span>Active Orders</span><span class="v">12</span></div>
+          <div class="s-row"><span>Outstanding Debts</span><span class="v">&#8358;47,000</span></div>
+          <div class="s-row"><span>Ready for Fitting</span><span class="s-pill">3</span></div>
+        </div>
+        <div class="screen-caption">The daily command center</div>
+      </div>
+      <div class="screen reveal reveal-delay-1">
+        <div class="screen-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title">AI Measurement</span>
+        </div>
+        <div class="screen-body">
+          <div class="s-head">New Client Scan</div>
+          <div class="s-row"><span>Chest</span><span class="v">98 cm</span></div>
+          <div class="s-row"><span>Waist</span><span class="v">84 cm</span></div>
+          <div class="s-row"><span>Hip</span><span class="v">102 cm</span></div>
+          <div class="s-row"><span>Shoulder</span><span class="v">46 cm</span></div>
+          <div class="s-row"><span>Height</span><span class="v">175 cm</span></div>
+        </div>
+        <div class="screen-caption">80+ measurements in 10 seconds</div>
+      </div>
+      <div class="screen reveal reveal-delay-2">
+        <div class="screen-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title">Design Approval</span>
+        </div>
+        <div class="screen-body">
+          <div class="s-head">Mrs. Adebayo's Dress</div>
+          <div class="s-row"><span>Silhouette</span><span class="v">Mermaid</span></div>
+          <div class="s-row"><span>Neckline</span><span class="v">Off-shoulder</span></div>
+          <div class="s-row"><span>Length</span><span class="v">Floor</span></div>
+          <div class="s-row"><span>Status</span><span class="s-pill">Approved</span></div>
+          <div class="s-row"><span>Approved At</span><span class="v">Mar 15, 2:47 PM</span></div>
+        </div>
+        <div class="screen-caption">Timestamped proof. No more disputes.</div>
+      </div>
+      <div class="screen reveal">
+        <div class="screen-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title">Public Portfolio</span>
+        </div>
+        <div class="screen-body">
+          <div class="s-head">vyora.ng/chidistitches</div>
+          <div class="s-row"><span>Bridal Gowns</span><span class="v">From &#8358;150K</span></div>
+          <div class="s-row"><span>Corporate Kaftan</span><span class="v">From &#8358;45K</span></div>
+          <div class="s-row"><span>Aso Ebi</span><span class="v">From &#8358;35K</span></div>
+          <div class="s-row"><span>Portfolio</span><span class="v">24 looks</span></div>
+        </div>
+        <div class="screen-caption">A real website. In your name.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section class="phases" id="phases">
+  <div class="container">
+    <span class="eyebrow">Product Roadmap</span>
+    <h2 class="section-title">From MVP to full fashion ecosystem.</h2>
+    <p class="section-sub">Vyora launches focused on tailors, then expands into every corner of Nigerian fashion.</p>
+
+    <div class="phase-tabs">
+      <button class="phase-tab active" data-phase="1">Phase 1 — MVP</button>
+      <button class="phase-tab" data-phase="2">Phase 2 — Growth</button>
+      <button class="phase-tab" data-phase="3">Phase 3 — Ecosystem</button>
+      <button class="phase-tab" data-phase="4">Phase 4 — Full Fashion</button>
+    </div>
+
+    <div class="phase-panel active" data-panel="1">
+      <div class="phase-header">
+        <div class="timeline">Month 1 – 6 &middot; Launch</div>
+        <h3>Dominate tailoring in one city.</h3>
+        <p>Ship the complete MVP. Get 100 paying tailors in Makurdi. Prove the model. Build case studies and testimonials.</p>
+      </div>
+      <div class="phase-list">
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Authentication &amp; multi-business support</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Client management &amp; history</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">AI body measurement (80+ points)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Design approval with timestamp</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Order tracking &amp; stages</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Invoices &amp; payment recording</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Email debt reminders</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Basic public portfolio page</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Staff management &amp; PINs</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Fabric inventory</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Subscription billing (manual transfer)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Admin panel &amp; audit log</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">PWA + iOS optimization</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Free signup + ₦1,000 paid trial</span></div>
+      </div>
+    </div>
+
+    <div class="phase-panel" data-panel="2">
+      <div class="phase-header">
+        <div class="timeline">Month 6 – 12 &middot; Growth</div>
+        <h3>Scale to multiple cities. Add the website builder.</h3>
+        <p>Expand to Jos, Abuja, Lagos. Launch the public directory. Turn every tailor page into a real mini-website.</p>
+      </div>
+      <div class="phase-list">
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Customizable mini-website (themes, layouts)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Public tailor directory (vyora.ng/tailors)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Custom domain mapping for top tailors</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Tailor-to-tailor design marketplace</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Premium templates (documents, graphics, layouts)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Advanced analytics for studios</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Featured listings in directory</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">WhatsApp notifications (official API)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Partner &amp; referral tracking system</span></div>
+      </div>
+    </div>
+
+    <div class="phase-panel" data-panel="3">
+      <div class="phase-header">
+        <div class="timeline">Month 12 – 18 &middot; Ecosystem</div>
+        <h3>Add marketplaces. Bring suppliers onto the platform.</h3>
+        <p>Fabric. Sewing machines. Spare parts. Financing. Everything a tailor needs to run their business.</p>
+      </div>
+      <div class="phase-list">
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Fabric marketplace (commission on sales)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Sewing machine marketplace</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Spare parts &amp; accessories</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Machine servicing bookings</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Machine financing partnerships</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Vyora Academy — training &amp; certification</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">White-label for fashion schools</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Data insights for suppliers</span></div>
+      </div>
+    </div>
+
+    <div class="phase-panel" data-panel="4">
+      <div class="phase-header">
+        <div class="timeline">Month 18 – 24 &middot; Full Fashion</div>
+        <h3>Beyond clothing. Every fashion craft.</h3>
+        <p>Vyora becomes the operating system for Nigerian fashion — clothing, footwear, bags, accessories, jewelry.</p>
+      </div>
+      <div class="phase-list">
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Footwear makers (foot scanning)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Bag designers (material &amp; hardware tracking)</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Jewelry makers</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Hat &amp; accessory makers</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Fashion event &amp; runway tools</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Cross-border payments for exporters</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Pan-African expansion</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <span class="eyebrow">Pricing</span>
+    <h2 class="section-title">Simple plans. Fair prices. In Naira.</h2>
+    <p class="section-sub">Sign up free. Unlock everything with a &#8358;1,000 paid trial that's credited to your first month.</p>
+
+    <div class="pricing-grid">
+      <div class="plan reveal">
+        <div class="plan-name">Solo</div>
+        <div class="plan-price">&#8358;2,500<span>/month</span></div>
+        <div class="plan-desc">For the individual tailor running their own business.</div>
+        <ul class="plan-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> 1 user account</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Unlimited AI body scans</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Unlimited clients &amp; orders</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Design approval system</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Public portfolio page</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Email debt reminders</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Start free trial</a>
+      </div>
+
+      <div class="plan featured reveal reveal-delay-1">
+        <div class="plan-name">Business</div>
+        <div class="plan-price">&#8358;5,000<span>/month</span></div>
+        <div class="plan-desc">For small studios and growing fashion businesses with staff.</div>
+        <ul class="plan-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Everything in Solo</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Up to 10 staff accounts</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Shift reconciliation</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Staff performance tracking</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Shared client database</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Fabric inventory</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Start free trial</a>
+      </div>
+
+      <div class="plan reveal reveal-delay-2">
+        <div class="plan-name">Fashion House</div>
+        <div class="plan-price">&#8358;15,000<span>/month</span></div>
+        <div class="plan-desc">For established fashion brands with multiple staff and locations.</div>
+        <ul class="plan-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Everything in Business</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Up to 30 staff accounts</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Multi-location support</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Advanced reports &amp; analytics</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Priority support</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Start free trial</a>
+      </div>
+    </div>
+
+    <div class="trial-callout reveal">
+      <div>
+        <h3>Paid trial: &#8358;1,000 for 14 days</h3>
+        <p>Full access to every feature. Unlimited AI scans. And when you subscribe, that &#8358;1,000 is credited to your first month &mdash; so you pay &#8358;1,500 instead of &#8358;2,500.</p>
+      </div>
+      <div class="badge">&#8358;1,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- MONETIZATION -->
+<section class="monetize">
+  <div class="container">
+    <span class="eyebrow">Revenue Model</span>
+    <h2 class="section-title">Multiple streams. One platform.</h2>
+    <p class="section-sub">Subscriptions are the foundation. But Vyora becomes a full ecosystem that generates revenue from every part of the fashion value chain.</p>
+    <div class="rev-grid">
+      <div class="rev-card reveal">
+        <div class="num">01</div>
+        <h4>Subscriptions</h4>
+        <p>Monthly recurring revenue from every tailor. &#8358;2,500 – &#8358;15,000 per business, per month.</p>
+        <div class="potential">Primary &middot; 99% margin at scale</div>
+      </div>
+      <div class="rev-card reveal reveal-delay-1">
+        <div class="num">02</div>
+        <h4>Extra AI Scans</h4>
+        <p>Solo includes unlimited scans. High-volume studios can buy scan credit packs for extra capacity.</p>
+        <div class="potential">Upsell &middot; &#8358;300–&#8358;500 per scan</div>
+      </div>
+      <div class="rev-card reveal reveal-delay-2">
+        <div class="num">03</div>
+        <h4>Design Marketplace</h4>
+        <p>Tailors sell their own designs to other tailors. Vyora takes 25% commission on every sale.</p>
+        <div class="potential">Phase 2 &middot; &#8358;2M+/month at scale</div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="num">04</div>
+        <h4>Premium Templates</h4>
+        <p>Marketing graphics, documents, portfolio layouts. All-access bundle at &#8358;25,000/year.</p>
+        <div class="potential">Phase 2 &middot; 100% margin</div>
+      </div>
+      <div class="rev-card reveal reveal-delay-1">
+        <div class="num">05</div>
+        <h4>Directory Featured Listings</h4>
+        <p>Top tailors pay monthly to be featured first in the public directory.</p>
+        <div class="potential">Phase 2 &middot; &#8358;500K+/month</div>
+      </div>
+      <div class="rev-card reveal reveal-delay-2">
+        <div class="num">06</div>
+        <h4>Fabric Marketplace</h4>
+        <p>Suppliers list fabric. Tailors order through Vyora. 5–10% commission on every sale.</p>
+        <div class="potential">Phase 3 &middot; &#8358;350K+/month</div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="num">07</div>
+        <h4>Sewing Machine Sales</h4>
+        <p>Machine dealers list on Vyora. High-ticket commissions (&#8358;5K–&#8358;175K per sale).</p>
+        <div class="potential">Phase 3 &middot; &#8358;700K+/month</div>
+      </div>
+      <div class="rev-card reveal reveal-delay-1">
+        <div class="num">08</div>
+        <h4>Vyora Academy</h4>
+        <p>Training courses and certification for tailors. &#8358;10,000–&#8358;50,000 per course.</p>
+        <div class="potential">Phase 3 &middot; &#8358;2M+ one-time</div>
+      </div>
+      <div class="rev-card reveal reveal-delay-2">
+        <div class="num">09</div>
+        <h4>White-Label &amp; API</h4>
+        <p>Fashion schools and brands license Vyora under their own brand. &#8358;500K–&#8358;2M per year.</p>
+        <div class="potential">Phase 3 &middot; &#8358;5M+/year</div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="num">10</div>
+        <h4>Referral Fees</h4>
+        <p>Referrals to partner tools (payment processors, financing, logistics). Passive commission income.</p>
+        <div class="potential">Ongoing &middot; &#8358;100K+/month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="container">
+    <span class="eyebrow">The Market</span>
+    <h2 class="section-title">A trillion-naira industry running on paper.</h2>
+    <p class="section-sub">Nigeria's fashion industry is one of the largest informal economies in Africa. And it has no digital infrastructure.</p>
+    <div class="market-grid">
+      <div class="stat reveal">
+        <div class="num">&#8358;10T</div>
+        <div class="lbl">Fashion industry contribution to GDP</div>
+        <div class="sub">Annual</div>
+      </div>
+      <div class="stat reveal reveal-delay-1">
+        <div class="num gold">10M+</div>
+        <div class="lbl">Livelihoods supported</div>
+        <div class="sub">Direct + indirect</div>
+      </div>
+      <div class="stat reveal reveal-delay-2">
+        <div class="num">60–70%</div>
+        <div class="lbl">Of clothing bought through informal tailoring</div>
+        <div class="sub">Not retail</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num gold">75–85%</div>
+        <div class="lbl">Of tailors operate fully manually</div>
+        <div class="sub">Notebooks and memory</div>
+      </div>
+      <div class="stat reveal reveal-delay-1">
+        <div class="num">0</div>
+        <div class="lbl">Dominant digital platform</div>
+        <div class="sub">Market not yet won</div>
+      </div>
+      <div class="stat reveal reveal-delay-2">
+        <div class="num gold">&#8358;50K+</div>
+        <div class="lbl">Average monthly loss per tailor</div>
+        <div class="sub">From remakes &amp; unpaid debts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER ENGINE -->
+<section class="partners">
+  <div class="container">
+    <span class="eyebrow">Growth Engine</span>
+    <h2 class="section-title">Distribution through partnership.</h2>
+    <p class="section-sub">We don't buy ads. We partner with the people who already have the trust of Nigerian tailors.</p>
+    <div class="partner-grid">
+      <div class="partner-card reveal">
+        <span class="badge">Tier 1</span>
+        <h4>WhatsApp Group Owners</h4>
+        <p>Community leaders with 100–1,000 tailors in private groups. Direct, trusted access.</p>
+        <div class="commission">30–50% commission on referrals</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-1">
+        <span class="badge">Tier 1</span>
+        <h4>Fabric Suppliers</h4>
+        <p>Every tailor buys fabric weekly. Suppliers have deep, existing relationships.</p>
+        <div class="commission">30–50% commission on referrals</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-2">
+        <span class="badge">Tier 1</span>
+        <h4>FADAN Chapter Leaders</h4>
+        <p>Official voices of the tailoring profession. Endorsement carries weight.</p>
+        <div class="commission">40–50% commission on referrals</div>
+      </div>
+      <div class="partner-card reveal">
+        <span class="badge">Tier 2</span>
+        <h4>Fashion Academy Owners</h4>
+        <p>Students learn Vyora in school. They graduate as paying customers.</p>
+        <div class="commission">30% commission on graduate subscriptions</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-1">
+        <span class="badge">Tier 2</span>
+        <h4>Popular Tailors</h4>
+        <p>Respected designers with strong Instagram followings in the tailoring niche.</p>
+        <div class="commission">30–40% commission on referrals</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-2">
+        <span class="badge">Tier 2</span>
+        <h4>Video Creators</h4>
+        <p>Tailoring tutorial channels with 10K–100K subscribers. Evergreen content.</p>
+        <div class="commission">30–40% commission + production fee</div>
+      </div>
+      <div class="partner-card reveal">
+        <span class="badge">Tier 3</span>
+        <h4>Facebook Group Admins</h4>
+        <p>Large public communities with 5,000–500,000 members. Broader reach.</p>
+        <div class="commission">&#8358;10K upfront + 30% commission</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-1">
+        <span class="badge">Tier 3</span>
+        <h4>Sewing Machine Dealers</h4>
+        <p>Physical touchpoint for every tailor. Dual role: promoter and supplier.</p>
+        <div class="commission">30–40% commission + marketplace sales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <span class="eyebrow">Growth Plan</span>
+    <h2 class="section-title">From launch to category leader.</h2>
+    <p class="section-sub">A city-by-city playbook. Prove the model once. Replicate everywhere.</p>
+    <div class="timeline">
+      <div class="tl-item active reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 1 &middot; Months 0–6</div>
+        <h3>Own Makurdi. Prove the model.</h3>
+        <p>Launch Vyora in one city. Onboard 100 paying tailors through direct outreach, market cluster takeovers, and academy partnerships. Build case studies and testimonials. Refine the product based on real feedback.</p>
+        <div class="metrics">
+          <div class="metric"><b>100</b>Paying tailors</div>
+          <div class="metric"><b>&#8358;250K</b>Monthly recurring revenue</div>
+          <div class="metric"><b>10–15</b>Active partners</div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 2 &middot; Months 6–12</div>
+        <h3>Expand to 5 cities. Add website builder.</h3>
+        <p>Replicate the Makurdi playbook in Jos, Gboko, Otukpo, Abuja, and Lagos. Launch the customizable mini-website and public directory. Add the design marketplace and premium templates.</p>
+        <div class="metrics">
+          <div class="metric"><b>500</b>Paying tailors</div>
+          <div class="metric"><b>&#8358;1.5M</b>Monthly recurring revenue</div>
+          <div class="metric"><b>50+</b>Active partners</div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 3 &middot; Months 12–18</div>
+        <h3>Add marketplaces. Become the ecosystem.</h3>
+        <p>Launch fabric marketplace, sewing machine marketplace, spare parts, and machine servicing. Launch Vyora Academy for training and certification. Sign white-label deals with fashion schools.</p>
+        <div class="metrics">
+          <div class="metric"><b>2,000</b>Paying tailors</div>
+          <div class="metric"><b>&#8358;7M+</b>Monthly recurring revenue</div>
+          <div class="metric"><b>5+</b>Revenue streams active</div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 4 &middot; Months 18–24</div>
+        <h3>Full fashion ecosystem. Pan-African.</h3>
+        <p>Expand beyond clothing into footwear, bags, accessories, and jewelry. Launch cross-border payments for exporters. Enter Ghana, Kenya, and South Africa with localized versions.</p>
+        <div class="metrics">
+          <div class="metric"><b>10,000+</b>Paying businesses</div>
+          <div class="metric"><b>&#8358;35M+</b>Monthly recurring revenue</div>
+          <div class="metric"><b>Category leader</b>In Nigerian fashion tech</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <span class="eyebrow">Let's Talk</span>
+    <h2>The product is built. The market is waiting. The timing is now.</h2>
+    <p>Vyora is ready to launch. We're looking for partners and investors who believe in the vision of digital infrastructure for Nigerian fashion.</p>
+    <div class="cta-actions">
+      <a href="mailto:hello@vyora.ng" class="btn btn-primary">Email us &rarr;</a>
+      <a href="https://wa.me/234" class="btn btn-ghost">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div style="max-width:320px;">
+      <div class="logo" style="color:var(--gold-light);margin-bottom:14px;">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 L20 7 L20 17 L12 22 L4 17 L4 7 Z"/>
+            <path d="M12 8 L12 16"/>
+            <path d="M8 12 L16 12"/>
+          </svg>
+        </span>
+        Vyora
+      </div>
+      <p style="font-size:14px;line-height:1.6;">The operating system for tailors and fashion designers in Nigeria.</p>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="#solution">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#phases">Roadmap</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="#market">Market</a>
+      <a href="#roadmap">Growth Plan</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <a href="#">Twitter / X</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Vyora. Built in Nigeria, for Nigerian tailors.
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Phase tabs
+document.querySelectorAll('.phase-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const p = tab.dataset.phase;
+    document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.phase-panel').forEach(panel => panel.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.phase-panel[data-panel="${p}"]`).classList.add('active');
+  });
+});
+</script>
+
+</body>
+          </html>
