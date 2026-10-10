@@ -219,7 +219,11 @@ section{padding:100px 24px;position:relative;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 .phase-header{margin-bottom:32px;}
 .phase-header h3{font-size:26px;color:var(--wine);margin-bottom:8px;}
-.phase-header .timeline{font-size:13px;font-weight:600;color:var(--gold-dark);letter-spacing:.06em;text-transform:uppercase;}
+.phase-header .timeline{
+  display:inline-block;font-size:12px;font-weight:700;color:var(--wine-dark);
+  letter-spacing:.06em;text-transform:uppercase;
+  background:var(--gold);padding:6px 14px;border-radius:100px;margin-bottom:14px;
+}
 .phase-header p{color:var(--ink-soft);margin-top:10px;max-width:680px;}
 .phase-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
 .phase-item{
@@ -283,13 +287,20 @@ section{padding:100px 24px;position:relative;}
 .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
 .rev-card{
   background:rgba(255,255,255,.04);border:1px solid rgba(201,169,97,.18);
-  border-radius:var(--radius);padding:24px;transition:all .3s;
+  border-radius:var(--radius);padding:24px;transition:all .3s;position:relative;
 }
 .rev-card:hover{background:rgba(255,255,255,.07);border-color:rgba(201,169,97,.4);}
 .rev-card .num{font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:var(--gold-light);letter-spacing:.08em;}
 .rev-card h4{color:var(--white);font-size:17px;margin:10px 0 8px;}
 .rev-card p{color:rgba(250,246,239,.7);font-size:13.5px;line-height:1.6;}
 .rev-card .potential{margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,169,97,.15);font-size:12.5px;color:var(--gold-light);font-weight:600;}
+.rev-card .unlock{
+  display:inline-block;margin-top:10px;font-size:10.5px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:100px;
+  background:rgba(201,169,97,.2);color:var(--gold-light);
+  border:1px solid rgba(201,169,97,.35);
+}
+.rev-card.gated{border-color:rgba(201,169,97,.35);background:rgba(201,169,97,.06);}
 
 /* ---------- ROADMAP ---------- */
 .roadmap{background:var(--cream-alt);}
@@ -306,7 +317,11 @@ section{padding:100px 24px;position:relative;}
 }
 .tl-item.done .tl-dot{background:var(--wine);}
 .tl-item.active .tl-dot{background:var(--gold);border-color:var(--gold-dark);box-shadow:0 0 0 4px rgba(201,169,97,.2);}
-.tl-phase{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+.tl-phase{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--wine-dark);
+  background:var(--gold);padding:5px 12px;border-radius:100px;margin-bottom:12px;
+}
 .tl-item h3{font-size:22px;color:var(--wine);margin-bottom:8px;}
 .tl-item p{color:var(--ink-soft);font-size:15px;max-width:680px;}
 .tl-item .metrics{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;}
@@ -438,9 +453,9 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
     <div class="nav-links">
       <a href="#problem">Problem</a>
       <a href="#solution">Solution</a>
-      <a href="#phases">Features</a>
+      <a href="#phases">Roadmap</a>
       <a href="#pricing">Pricing</a>
-      <a href="#roadmap">Roadmap</a>
+      <a href="#monetize">Revenue</a>
       <a href="#market">Market</a>
       <a href="#contact" class="nav-cta">Get in Touch</a>
     </div>
@@ -701,8 +716,8 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
 <section class="phases" id="phases">
   <div class="container">
     <span class="eyebrow">Product Roadmap</span>
-    <h2 class="section-title">From MVP to full fashion ecosystem.</h2>
-    <p class="section-sub">Vyora launches focused on tailors, then expands into every corner of Nigerian fashion.</p>
+    <h2 class="section-title">Gated by traction, not time.</h2>
+    <p class="section-sub">We don't move to the next phase until we hit the gate. Each gate is proof the previous phase worked.</p>
 
     <div class="phase-tabs">
       <button class="phase-tab active" data-phase="1">Phase 1 — MVP</button>
@@ -713,9 +728,9 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
 
     <div class="phase-panel active" data-panel="1">
       <div class="phase-header">
-        <div class="timeline">Month 1 – 6 &middot; Launch</div>
-        <h3>Dominate tailoring in one city.</h3>
-        <p>Ship the complete MVP. Get 100 paying tailors in Makurdi. Prove the model. Build case studies and testimonials.</p>
+        <div class="timeline">Gate &middot; 50 paying tailors + 3 case studies</div>
+        <h3>Prove the MVP in one city.</h3>
+        <p>We don't expand until Vyora works for 50 tailors in Makurdi. Real customers, real testimonials, real retention.</p>
       </div>
       <div class="phase-list">
         <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Authentication &amp; multi-business support</span></div>
@@ -731,15 +746,15 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
         <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Subscription billing (manual transfer)</span></div>
         <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Admin panel &amp; audit log</span></div>
         <div class="phase-item"><span class="check">&#10003;</span><span class="txt">PWA + iOS optimization</span></div>
-        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Free signup + ₦1,000 paid trial</span></div>
+        <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Free signup + &#8358;1,000 paid trial</span></div>
       </div>
     </div>
 
     <div class="phase-panel" data-panel="2">
       <div class="phase-header">
-        <div class="timeline">Month 6 – 12 &middot; Growth</div>
-        <h3>Scale to multiple cities. Add the website builder.</h3>
-        <p>Expand to Jos, Abuja, Lagos. Launch the public directory. Turn every tailor page into a real mini-website.</p>
+        <div class="timeline">Gate &middot; 300 paying tailors across 3+ cities</div>
+        <h3>Prove the model replicates. Add the website builder.</h3>
+        <p>We don't build Phase 3 features until Phase 1 works in multiple cities. Then we launch custom websites and the public directory.</p>
       </div>
       <div class="phase-list">
         <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Customizable mini-website (themes, layouts)</span></div>
@@ -756,9 +771,9 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
 
     <div class="phase-panel" data-panel="3">
       <div class="phase-header">
-        <div class="timeline">Month 12 – 18 &middot; Ecosystem</div>
-        <h3>Add marketplaces. Bring suppliers onto the platform.</h3>
-        <p>Fabric. Sewing machines. Spare parts. Financing. Everything a tailor needs to run their business.</p>
+        <div class="timeline">Gate &middot; 1,500 paying tailors + 3 revenue streams active</div>
+        <h3>Prove we can run a marketplace. Add suppliers.</h3>
+        <p>We don't add fabric and machine marketplaces until we know tailors will buy through Vyora. The gate is proof of demand.</p>
       </div>
       <div class="phase-list">
         <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Fabric marketplace (commission on sales)</span></div>
@@ -774,9 +789,9 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
 
     <div class="phase-panel" data-panel="4">
       <div class="phase-header">
-        <div class="timeline">Month 18 – 24 &middot; Full Fashion</div>
-        <h3>Beyond clothing. Every fashion craft.</h3>
-        <p>Vyora becomes the operating system for Nigerian fashion — clothing, footwear, bags, accessories, jewelry.</p>
+        <div class="timeline">Gate &middot; 5,000 paying businesses across verticals</div>
+        <h3>Prove the ecosystem works for tailors. Expand to all fashion.</h3>
+        <p>We don't add shoes and bags until tailors are fully served. Then we replicate the playbook vertically.</p>
       </div>
       <div class="phase-list">
         <div class="phase-item"><span class="check">&#10003;</span><span class="txt">Footwear makers (foot scanning)</span></div>
@@ -855,72 +870,125 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
 </section>
 
 <!-- MONETIZATION -->
-<section class="monetize">
+<section class="monetize" id="monetize">
   <div class="container">
     <span class="eyebrow">Revenue Model</span>
     <h2 class="section-title">Multiple streams. One platform.</h2>
-    <p class="section-sub">Subscriptions are the foundation. But Vyora becomes a full ecosystem that generates revenue from every part of the fashion value chain.</p>
+    <p class="section-sub">Subscriptions are the foundation. But Vyora becomes a full ecosystem that generates revenue from every part of the fashion value chain. Some streams unlock at specific user milestones.</p>
     <div class="rev-grid">
+
       <div class="rev-card reveal">
         <div class="num">01</div>
         <h4>Subscriptions</h4>
         <p>Monthly recurring revenue from every tailor. &#8358;2,500 – &#8358;15,000 per business, per month.</p>
         <div class="potential">Primary &middot; 99% margin at scale</div>
+        <div class="unlock">Unlocks at launch</div>
       </div>
+
       <div class="rev-card reveal reveal-delay-1">
         <div class="num">02</div>
         <h4>Extra AI Scans</h4>
         <p>Solo includes unlimited scans. High-volume studios can buy scan credit packs for extra capacity.</p>
         <div class="potential">Upsell &middot; &#8358;300–&#8358;500 per scan</div>
+        <div class="unlock">Unlocks at launch</div>
       </div>
-      <div class="rev-card reveal reveal-delay-2">
+
+      <div class="rev-card gated reveal reveal-delay-2">
         <div class="num">03</div>
+        <h4>Sponsored Directory Listings</h4>
+        <p>Fabric suppliers, machine dealers, and fashion brands pay monthly to be featured at the top of the Vyora directory. High-intent audience, targeted placement.</p>
+        <div class="potential">&#8358;100K–&#8358;500K/month per sponsor</div>
+        <div class="unlock">Unlocks at 1,000 tailors</div>
+      </div>
+
+      <div class="rev-card gated reveal">
+        <div class="num">04</div>
+        <h4>In-App Display Ads</h4>
+        <p>Non-intrusive ad placements inside the free and Solo tiers. Targeted to tailoring — fabric, machines, tools, courses. No ads shown to Business or Fashion House tier.</p>
+        <div class="potential">&#8358;200K–&#8358;1M/month at scale</div>
+        <div class="unlock">Unlocks at 2,500 tailors</div>
+      </div>
+
+      <div class="rev-card gated reveal reveal-delay-1">
+        <div class="num">05</div>
+        <h4>Sponsored Content &amp; Newsletter</h4>
+        <p>Weekly tailoring newsletter and blog. Brands sponsor issues and articles. "How to pick the right industrial machine — brought to you by [Brand]."</p>
+        <div class="potential">&#8358;50K–&#8358;200K per placement</div>
+        <div class="unlock">Unlocks at 5,000 subscribers</div>
+      </div>
+
+      <div class="rev-card gated reveal reveal-delay-2">
+        <div class="num">06</div>
         <h4>Design Marketplace</h4>
         <p>Tailors sell their own designs to other tailors. Vyora takes 25% commission on every sale.</p>
-        <div class="potential">Phase 2 &middot; &#8358;2M+/month at scale</div>
+        <div class="potential">&#8358;2M+/month at scale</div>
+        <div class="unlock">Unlocks at 300 tailors</div>
       </div>
-      <div class="rev-card reveal">
-        <div class="num">04</div>
+
+      <div class="rev-card gated reveal">
+        <div class="num">07</div>
         <h4>Premium Templates</h4>
         <p>Marketing graphics, documents, portfolio layouts. All-access bundle at &#8358;25,000/year.</p>
-        <div class="potential">Phase 2 &middot; 100% margin</div>
+        <div class="potential">100% margin</div>
+        <div class="unlock">Unlocks at 300 tailors</div>
       </div>
-      <div class="rev-card reveal reveal-delay-1">
-        <div class="num">05</div>
-        <h4>Directory Featured Listings</h4>
-        <p>Top tailors pay monthly to be featured first in the public directory.</p>
-        <div class="potential">Phase 2 &middot; &#8358;500K+/month</div>
-      </div>
-      <div class="rev-card reveal reveal-delay-2">
-        <div class="num">06</div>
+
+      <div class="rev-card gated reveal reveal-delay-1">
+        <div class="num">08</div>
         <h4>Fabric Marketplace</h4>
         <p>Suppliers list fabric. Tailors order through Vyora. 5–10% commission on every sale.</p>
-        <div class="potential">Phase 3 &middot; &#8358;350K+/month</div>
+        <div class="potential">&#8358;350K+/month</div>
+        <div class="unlock">Unlocks at 1,500 tailors</div>
       </div>
-      <div class="rev-card reveal">
-        <div class="num">07</div>
+
+      <div class="rev-card gated reveal reveal-delay-2">
+        <div class="num">09</div>
         <h4>Sewing Machine Sales</h4>
         <p>Machine dealers list on Vyora. High-ticket commissions (&#8358;5K–&#8358;175K per sale).</p>
-        <div class="potential">Phase 3 &middot; &#8358;700K+/month</div>
+        <div class="potential">&#8358;700K+/month</div>
+        <div class="unlock">Unlocks at 1,500 tailors</div>
       </div>
-      <div class="rev-card reveal reveal-delay-1">
-        <div class="num">08</div>
+
+      <div class="rev-card gated reveal">
+        <div class="num">10</div>
+        <h4>Brand Partnerships</h4>
+        <p>Fashion brands and textile manufacturers pay for direct access to verified Nigerian tailoring businesses for campaigns, sampling, and distribution.</p>
+        <div class="potential">&#8358;500K–&#8358;5M per partnership</div>
+        <div class="unlock">Unlocks at 5,000 tailors</div>
+      </div>
+
+      <div class="rev-card gated reveal reveal-delay-1">
+        <div class="num">11</div>
         <h4>Vyora Academy</h4>
         <p>Training courses and certification for tailors. &#8358;10,000–&#8358;50,000 per course.</p>
-        <div class="potential">Phase 3 &middot; &#8358;2M+ one-time</div>
+        <div class="potential">&#8358;2M+ one-time</div>
+        <div class="unlock">Unlocks at 1,500 tailors</div>
       </div>
-      <div class="rev-card reveal reveal-delay-2">
-        <div class="num">09</div>
+
+      <div class="rev-card gated reveal reveal-delay-2">
+        <div class="num">12</div>
         <h4>White-Label &amp; API</h4>
         <p>Fashion schools and brands license Vyora under their own brand. &#8358;500K–&#8358;2M per year.</p>
-        <div class="potential">Phase 3 &middot; &#8358;5M+/year</div>
+        <div class="potential">&#8358;5M+/year</div>
+        <div class="unlock">Unlocks at 3,000 tailors</div>
       </div>
-      <div class="rev-card reveal">
-        <div class="num">10</div>
-        <h4>Referral Fees</h4>
-        <p>Referrals to partner tools (payment processors, financing, logistics). Passive commission income.</p>
-        <div class="potential">Ongoing &middot; &#8358;100K+/month</div>
+
+      <div class="rev-card gated reveal">
+        <div class="num">13</div>
+        <h4>Data Insights &amp; Reports</h4>
+        <p>Anonymized, aggregated data on tailoring trends sold to fabric suppliers, brands, and market researchers. "What Nigerian tailors are actually buying this quarter."</p>
+        <div class="potential">&#8358;200K–&#8358;1M per report</div>
+        <div class="unlock">Unlocks at 5,000 tailors</div>
       </div>
+
+      <div class="rev-card gated reveal reveal-delay-1">
+        <div class="num">14</div>
+        <h4>Referral Commissions</h4>
+        <p>Referrals to partner tools (payment processors, financing, logistics, insurance). Passive commission income.</p>
+        <div class="potential">&#8358;100K+/month passive</div>
+        <div class="unlock">Unlocks at 500 tailors</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1029,50 +1097,50 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
 <section class="roadmap" id="roadmap">
   <div class="container">
     <span class="eyebrow">Growth Plan</span>
-    <h2 class="section-title">From launch to category leader.</h2>
-    <p class="section-sub">A city-by-city playbook. Prove the model once. Replicate everywhere.</p>
+    <h2 class="section-title">Milestones, not deadlines.</h2>
+    <p class="section-sub">We measure progress by what we've proven, not by how much time has passed. Each gate is proof the previous phase worked.</p>
     <div class="timeline">
       <div class="tl-item active reveal">
         <div class="tl-dot"></div>
-        <div class="tl-phase">Phase 1 &middot; Months 0–6</div>
-        <h3>Own Makurdi. Prove the model.</h3>
-        <p>Launch Vyora in one city. Onboard 100 paying tailors through direct outreach, market cluster takeovers, and academy partnerships. Build case studies and testimonials. Refine the product based on real feedback.</p>
+        <div class="tl-phase">Gate 1 &middot; 50 paying tailors + 3 case studies</div>
+        <h3>Own Makurdi. Prove the MVP works.</h3>
+        <p>We don't expand until Vyora is indispensable to 50 tailors in one city. That means real retention, real testimonials, real word-of-mouth. When we have that, we have a repeatable model.</p>
         <div class="metrics">
-          <div class="metric"><b>100</b>Paying tailors</div>
-          <div class="metric"><b>&#8358;250K</b>Monthly recurring revenue</div>
-          <div class="metric"><b>10–15</b>Active partners</div>
+          <div class="metric"><b>50</b>Paying tailors</div>
+          <div class="metric"><b>&#8358;125K</b>Monthly recurring revenue</div>
+          <div class="metric"><b>3+</b>Case studies</div>
         </div>
       </div>
       <div class="tl-item reveal">
         <div class="tl-dot"></div>
-        <div class="tl-phase">Phase 2 &middot; Months 6–12</div>
-        <h3>Expand to 5 cities. Add website builder.</h3>
-        <p>Replicate the Makurdi playbook in Jos, Gboko, Otukpo, Abuja, and Lagos. Launch the customizable mini-website and public directory. Add the design marketplace and premium templates.</p>
+        <div class="tl-phase">Gate 2 &middot; 300 paying tailors across 3+ cities</div>
+        <h3>Prove the model replicates. Launch the website builder.</h3>
+        <p>We only move here when Makurdi is working and we can repeat the playbook in a new city. Then we add custom websites, the public directory, and the design marketplace.</p>
         <div class="metrics">
-          <div class="metric"><b>500</b>Paying tailors</div>
-          <div class="metric"><b>&#8358;1.5M</b>Monthly recurring revenue</div>
-          <div class="metric"><b>50+</b>Active partners</div>
+          <div class="metric"><b>300</b>Paying tailors</div>
+          <div class="metric"><b>&#8358;900K</b>Monthly recurring revenue</div>
+          <div class="metric"><b>3+</b>Cities live</div>
         </div>
       </div>
       <div class="tl-item reveal">
         <div class="tl-dot"></div>
-        <div class="tl-phase">Phase 3 &middot; Months 12–18</div>
-        <h3>Add marketplaces. Become the ecosystem.</h3>
-        <p>Launch fabric marketplace, sewing machine marketplace, spare parts, and machine servicing. Launch Vyora Academy for training and certification. Sign white-label deals with fashion schools.</p>
+        <div class="tl-phase">Gate 3 &middot; 1,500 paying tailors + 3 revenue streams</div>
+        <h3>Prove the ecosystem. Add marketplaces.</h3>
+        <p>We don't launch fabric and machine marketplaces until tailors trust Vyora enough to spend through it. The gate is demonstrated demand — not a calendar date.</p>
         <div class="metrics">
-          <div class="metric"><b>2,000</b>Paying tailors</div>
-          <div class="metric"><b>&#8358;7M+</b>Monthly recurring revenue</div>
-          <div class="metric"><b>5+</b>Revenue streams active</div>
+          <div class="metric"><b>1,500</b>Paying tailors</div>
+          <div class="metric"><b>&#8358;5M+</b>Monthly recurring revenue</div>
+          <div class="metric"><b>3+</b>Active revenue streams</div>
         </div>
       </div>
       <div class="tl-item reveal">
         <div class="tl-dot"></div>
-        <div class="tl-phase">Phase 4 &middot; Months 18–24</div>
-        <h3>Full fashion ecosystem. Pan-African.</h3>
-        <p>Expand beyond clothing into footwear, bags, accessories, and jewelry. Launch cross-border payments for exporters. Enter Ghana, Kenya, and South Africa with localized versions.</p>
+        <div class="tl-phase">Gate 4 &middot; 5,000 paying businesses across verticals</div>
+        <h3>Prove the platform works for all fashion. Expand beyond clothing.</h3>
+        <p>We only move to footwear, bags, and accessories when tailors are fully served and the playbook is documented. Then we replicate it vertically into every fashion craft.</p>
         <div class="metrics">
-          <div class="metric"><b>10,000+</b>Paying businesses</div>
-          <div class="metric"><b>&#8358;35M+</b>Monthly recurring revenue</div>
+          <div class="metric"><b>5,000+</b>Paying businesses</div>
+          <div class="metric"><b>&#8358;20M+</b>Monthly recurring revenue</div>
           <div class="metric"><b>Category leader</b>In Nigerian fashion tech</div>
         </div>
       </div>
@@ -1118,7 +1186,7 @@ footer{background:var(--wine-dark);color:rgba(250,246,239,.7);padding:50px 24px 
     <div>
       <h4>Company</h4>
       <a href="#market">Market</a>
-      <a href="#roadmap">Growth Plan</a>
+      <a href="#monetize">Revenue Model</a>
       <a href="#contact">Contact</a>
     </div>
     <div>
@@ -1165,4 +1233,4 @@ document.querySelectorAll('.phase-tab').forEach(tab => {
 </script>
 
 </body>
-          </html>
+  </html>
